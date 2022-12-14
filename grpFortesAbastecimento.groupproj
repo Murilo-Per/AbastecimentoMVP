@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{392C1F98-A9D8-45C3-AEFA-37D06ABF7838}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="FortesAbastecimento.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Test\FortesAbastecimentoTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="FortesAbastecimento">
+        <MSBuild Projects="FortesAbastecimento.dproj"/>
+    </Target>
+    <Target Name="FortesAbastecimento:Clean">
+        <MSBuild Projects="FortesAbastecimento.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FortesAbastecimento:Make">
+        <MSBuild Projects="FortesAbastecimento.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FortesAbastecimentoTests">
+        <MSBuild Projects="Test\FortesAbastecimentoTests.dproj"/>
+    </Target>
+    <Target Name="FortesAbastecimentoTests:Clean">
+        <MSBuild Projects="Test\FortesAbastecimentoTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FortesAbastecimentoTests:Make">
+        <MSBuild Projects="Test\FortesAbastecimentoTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="FortesAbastecimento;FortesAbastecimentoTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="FortesAbastecimento:Clean;FortesAbastecimentoTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="FortesAbastecimento:Make;FortesAbastecimentoTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
